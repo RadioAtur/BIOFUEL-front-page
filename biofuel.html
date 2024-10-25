@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biofuel and Bioethanol Explanation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+New&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gozaar&display=swap" rel="stylesheet"> <!-- Add Gozaar font -->
+    <link href="https://fonts.ir/font/BTraffic" rel="stylesheet"> <!-- Link to B Traffic font -->
+    <style>
+        body {
+            margin: 0;
+            overflow: auto; /* Allow scrolling */
+            height: 200vh; /* Make the body taller for scrolling */
+            background: linear-gradient(45deg, #0a8d48, #0062cc);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the start for scrolling */
+            font-family: 'Gozaar', sans-serif; /* Set Gozaar font for the body */
+        }
+        @keyframes gradientAnimation {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        canvas {
+            position: fixed; /* Change to fixed to cover the entire viewport */
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.5); /* Glass effect */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            border-radius: 10px;
+            padding: 30px; /* Increased padding */
+            text-align: center;
+            width: 90%; /* Increased width */
+            max-width: 800px; /* Increased max width */
+            margin-top: 50px; /* Add some margin to separate from top */
+        }
+        .half-width {
+            width: 100%;
+            position: relative;
+        }
+        .details-box {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px; /* Removed border */
+            margin: 20px 0;
+            position: relative;
+        }
+        .info-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none; /* Initially hidden */
+            text-align: left;
+        }
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            color: white;
+        }
+        summary {
+            font-size: 25px; 
+            font-weight: bold;
+        }
+        p, summary {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: black;
+        }
+        details { 
+            text-align: left;
+        }
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 2;
+        }
+        .toggle-button {
+            padding: 5px 10px;
+            background-color: #A8E744;
+            color: black;
+            text-decoration: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .toggle-button:hover {
+            background-color: #0056b3;
+        }
+        .home-button {
+            position: absolute;
+            top: 10px; /* Positioning at the top */
+            left: 10px; /* Positioning to the left */
+            padding: 10px 20px; /* Padding for the button */
+            background: rgba(255, 255, 255, 0.7); /* Glass effect */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 2; /* Ensure it's above other elements */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <button class="home-button" onclick="goToHomePage()">Home Page</button> <!-- Home button -->
+    <div class="content">
+        <button class="lang-toggle" onclick="toggleLanguage()">Switch to Farsi</button>
+        <header class="half-width">
+            <h1 id="title" style="font-size: 50px;">Biofuel</h1>
+            <img src="https://drive.google.com/thumbnail?id=1UwL35wDFAeojiho1PId8bubA0MeToVEr" alt="Your Image Alt Text" width="100" height="100">
+            <h3 id="subtitle" style="font-size: 37px; color: white;">How to make this FUEL</h3>
+        </header>
+        <div class="details-box">
+            <details>
+                <summary id="summary1">1. Collection and Preparation</summary>
+                <p id="text1" style="font-size: 19px;">Materials Needed: Rice straw residues, water, chemicals for pretreatment (e.g., sodium hydroxide or sulfuric acid). Equipment Needed: Collection machinery, storage facilities.</p>
+                <button class="toggle-button" onclick="toggleInfoBox(1)">Toggle Details</button>
+            </details>
+            <details>
+                <summary id="summary2">2. Pretreatment</summary>
+                <p id="text2" style="font-size: 19px;">Process: The rice straw is pretreated to break down the lignocellulosic structure and make the cellulose accessible. This can be done using chemical (alkali or acid) treatments. Materials Needed: Sodium hydroxide (NaOH) or sulfuric acid (H2SO4), water. Equipment Needed: Reactors, mixing tanks, heating systems.</p>
+                <button class="toggle-button" onclick="toggleInfoBox(2)">Toggle Details</button>
+            </details>
+            <details>
+                <summary id="summary3">3. Enzymatic Hydrolysis</summary>
+                <p id="text3" style="font-size: 19px;">Process: The pretreated rice straw is subjected to enzymatic hydrolysis to convert cellulose into fermentable sugars (glucose and xylose). Materials Needed: Cellulase and xylanase enzymes. Equipment Needed: Hydrolysis reactors, temperature control systems.</p>
+                <button class="toggle-button" onclick="toggleInfoBox(3)">Toggle Details</button>
+            </details>
+            <details>
+                <summary id="summary4">4. Fermentation</summary>
+                <p id="text4" style="font-size: 19px;">Process: The fermentable sugars are converted into ethanol by fermentation using yeast (e.g., Saccharomyces cerevisiae). Materials Needed: Yeast, nutrients for yeast growth. Equipment Needed: Fermentation tanks, aeration systems, temperature control systems.</p>
+                <button class="toggle-button" onclick="toggleInfoBox(4)">Toggle Details</button>
+            </details>
+            <details>
+                <summary id="summary5">5. Distillation and Purification</summary>
+                <p id="text5" style="font-size: 19px;">Process: The ethanol is separated from the fermentation broth through distillation and further purified to achieve the desired concentration. Materials Needed: Distillation columns, condensers, purification systems. Equipment Needed: Distillation units, cooling systems.</p>
+                <button class="toggle-button" onclick="toggleInfoBox(5)">Toggle Details</button>
+            </details>
+            <details>
+                <summary id="summary6">6. Waste Management</summary>
+                <p id="text6" style="font-size: 19px;">Process: The remaining biomass and waste products are managed and disposed of or utilized for other purposes (e.g., animal feed, compost). Materials Needed: Waste management systems. Equipment Needed: Composting facilities, waste processing units.</p>
+                <button class="toggle-button" onclick="toggleInfoBox(6)">Toggle Details</button>
+            </details>
+            <details>
+                <summary id="summary7">7. Quality Control and Testing</summary>
+                <p id="text7" style="font-size: 19px;">Process: The final bioethanol product is tested for quality and purity to ensure it meets the required standards. Materials Needed: Testing kits, quality control instruments. Equipment Needed: Analytical instruments, quality control labs.</p>
+                <button class="toggle-button" onclick="toggleInfoBox(7)">Toggle Details</button>
+            </details>
+        </div>
+
+        <!-- New info boxes in English -->
+        <div id="info-box-1" class="info-box">
+            <h4 style="text-align: left;">1. Collection and Preparation Details</h4>
+            <p>In this stage, rice straw is collected from fields. It needs to be dried and ground to enhance the efficiency of the pretreatment process.</p>
+        </div>
+        <div id="info-box-2" class="info-box">
+            <h4 style="text-align: left;">2. Pretreatment Details</h4>
+            <p>The pretreatment process can involve various methods, including steam explosion and chemical treatments, to improve accessibility to cellulose.</p>
+        </div>
+        <div id="info-box-3" class="info-box">
+            <h4 style="text-align: left;">3. Enzymatic Hydrolysis Details</h4>
+            <p>Enzymatic hydrolysis typically takes several hours to days, depending on the conditions and enzyme concentration.</p>
+        </div>
+        <div id="info-box-4" class="info-box">
+            <h4 style="text-align: left;">4. Fermentation Details</h4>
+            <p>Fermentation requires maintaining optimal conditions for yeast activity, including temperature and pH levels.</p>
+        </div>
+        <div id="info-box-5" class="info-box">
+            <h4 style="text-align: left;">5. Distillation and Purification Details</h4>
+            <p>The distillation process may require multiple stages to achieve the desired purity of ethanol, typically around 95%.</p>
+        </div>
+        <div id="info-box-6" class="info-box">
+            <h4 style="text-align: left;">6. Waste Management Details</h4>
+            <p>Effective waste management strategies can include converting waste into bioenergy or compost.</p>
+        </div>
+        <div id="info-box-7" class="info-box">
+            <h4 style="text-align: left;">7. Quality Control and Testing Details</h4>
+            <p>Quality control involves testing for impurities and ensuring that the bioethanol meets regulatory standards.</p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const numPoints = 100;
+        const points = [];
+        let mousePos = { x: canvas.width / 2, y: canvas.height / 2 };
+
+        function Point(x, y) {
+            this.x = x;
+            this.y = y;
+            this.vx = (Math.random() * 2 - 1) * 1; // Set a constant speed
+            this.vy = (Math.random() * 2 - 1) * 1; // Set a constant speed
+        }
+
+        Point.prototype.update = function() {
+            const distanceX = this.x - mousePos.x;
+            const distanceY = this.y - mousePos.y;
+            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+            // If the point is close to the mouse, move away from it
+            if (distance < 200) {
+                // Normalize the distance to create a consistent speed
+                const normFactor = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+                
+                if (normFactor > 0) { // Prevent division by zero
+                    this.vx = (distanceX / normFactor) * 1; // Repel horizontally at constant speed
+                    this.vy = (distanceY / normFactor) * 1; // Repel vertically at constant speed
+                }
+            }
+
+            // Update position
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounce off walls
+            if (this.x < 0 || this.x > ctx.canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > ctx.canvas.height) this.vy *= -1;
+        };
+
+        function init() {
+            for (let i = 0; i < numPoints; i++) {
+                points.push(new Point(Math.random() * canvas.width, Math.random() * canvas.height));
+            }
+        }
+
+        function drawLines() {
+            const threshold = 100; // Distance threshold for connecting lines
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    const dx = points[i].x - points[j].x;
+                    const dy = points[i].y - points[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < threshold) {
+                        ctx.beginPath();
+                        ctx.moveTo(points[i].x, points[i].y);
+                        ctx.lineTo(points[j].x, points[j].y);
+                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)'; // Semi-transparent white
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                        ctx.closePath();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            points.forEach(point => {
+                point.update();
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = '#fff';
+                ctx.fill();
+                ctx.closePath();
+            });
+
+            drawLines(); // Draw lines between close points
+
+            requestAnimationFrame(animate);
+        }
+
+        // Update mouse position
+        window.addEventListener('mousemove', (event) => {
+            mousePos.x = event.clientX;
+            mousePos.y = event.clientY;
+        });
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            points.length = 0;
+            init();
+        });
+
+        function toggleLanguage() {
+            const isFarsi = document.body.dataset.lang === 'farsi';
+            document.body.dataset.lang = isFarsi ? 'english' : 'farsi';
+            updateContent(isFarsi);
+        }
+
+        function updateContent(isFarsi) {
+            if (isFarsi) {
+                // Set Farsi content
+                document.getElementById('title').innerText = 'سوخت زیستی';
+                document.getElementById('subtitle').innerText = 'چگونه این سوخت را تولید کنیم';
+                
+                document.getElementById('text1').innerText = 'مواد لازم: بقایای کاه برنج، آب، مواد شیمیایی برای پیش‌درمان (به‌عنوان مثال، هیدروکسید سدیم یا اسید سولفوریک). تجهیزات مورد نیاز: ماشین‌آلات جمع‌آوری، امکانات ذخیره‌سازی.';
+                document.getElementById('text2').innerText = 'فرایند: کاه برنج برای شکستن ساختار لیگنوسلولز و دسترسی به سلولز پیش‌درمان می‌شود. این کار می‌تواند با استفاده از روش‌های شیمیایی (قلیایی یا اسیدی) انجام شود. مواد لازم: هیدروکسید سدیم (NaOH) یا اسید سولفوریک (H2SO4)، آب. تجهیزات مورد نیاز: راکتورها، مخازن مخلوط‌کن، سیستم‌های حرارتی.';
+                document.getElementById('text3').innerText = 'فرایند: کاه برنج پیش‌درمان شده تحت هیدرولیز آنزیمی قرار می‌گیرد تا سلولز را به قندهای قابل تخمیر (گلوکز و زایلوز) تبدیل کند. مواد لازم: آنزیم‌های سلولاز و زایلاز. تجهیزات مورد نیاز: راکتورهای هیدرولیز، سیستم‌های کنترل دما.';
+                document.getElementById('text4').innerText = 'فرایند: قندهای قابل تخمیر توسط تخمیر به اتانول تبدیل می‌شوند که با استفاده از مخمر (به عنوان مثال، ساکارومایسس کِرِیزی) انجام می‌شود. مواد لازم: مخمر، مواد مغذی برای رشد مخمر. تجهیزات مورد نیاز: مخازن تخمیر، سیستم‌های هوادهی، سیستم‌های کنترل دما.';
+                document.getElementById('text5').innerText = 'فرایند: اتانول از مایع تخمیر جدا می‌شود و از طریق تقطیر و تصفیه بیشتر برای رسیدن به غلظت مورد نظر، خالص می‌شود. مواد لازم: ستون‌های تقطیر، کندانسورها، سیستم‌های تصفیه. تجهیزات مورد نیاز: واحدهای تقطیر، سیستم‌های خنک‌کننده.';
+                document.getElementById('text6').innerText = 'فرایند: باقی‌مانده بیوماس و محصولات زباله مدیریت و دفع می‌شوند یا برای اهداف دیگر (به عنوان مثال، خوراک دام، کمپوست) استفاده می‌شوند. مواد لازم: سیستم‌های مدیریت زباله. تجهیزات مورد نیاز: امکانات کمپوست‌سازی، واحدهای پردازش زباله.';
+                document.getElementById('text7').innerText = 'فرایند: محصول نهایی بیو اتانول برای کیفیت و خلوص آزمایش می‌شود تا اطمینان حاصل شود که با استانداردهای مورد نظر مطابقت دارد. مواد لازم: کیت‌های آزمایشی، ابزارهای کنترل کیفیت. تجهیزات مورد نیاز: ابزارهای تحلیلی، آزمایشگاه‌های کنترل کیفیت.';
+
+                // Update summaries to Farsi
+                document.getElementById('summary1').innerText = '1. جمع‌آوری و آماده‌سازی';
+                document.getElementById('summary2').innerText = '2. پیش‌درمانی';
+                document.getElementById('summary3').innerText = '3. هیدرولیز آنزیمی';
+                document.getElementById('summary4').innerText = '4. تخمیر';
+                document.getElementById('summary5').innerText = '5. تقطیر و تصفیه';
+                document.getElementById('summary6').innerText = '6. مدیریت زباله';
+                document.getElementById('summary7').innerText = '7. کنترل کیفیت و آزمایش';
+
+                // Change font for Persian text
+                document.querySelectorAll('p, summary').forEach(el => el.style.fontFamily = 'B Traffic, sans-serif');
+
+                // Change text direction to right-to-left for h4 in info boxes
+                document.querySelectorAll('.info-box h4').forEach(el => {
+                    el.style.textAlign = 'right';
+                });
+
+                // Change text direction to right-to-left
+                document.body.style.direction = 'rtl';
+                document.body.style.textAlign = 'right';
+                document.querySelectorAll('summary').forEach(el => el.style.textAlign = 'right');
+                document.querySelectorAll('p').forEach(el => el.style.textAlign = 'right');
+
+                // Update Toggle Details buttons to Farsi
+                document.querySelectorAll('.toggle-button').forEach(el => {
+                    el.innerText = 'اطلاعات بیشتر'; // More Information in Farsi
+                    el.style.textAlign = 'right'; // Align button text to right
+                });
+
+                // Update info boxes to Farsi
+                document.getElementById('info-box-1').querySelector('h4').innerText = 'جزئیات جمع‌آوری و آماده‌سازی';
+                document.getElementById('info-box-1').querySelector('p').innerText = 'در این مرحله، کاه برنج از مزارع جمع‌آوری می‌شود. باید خشک و خرد شود تا کارایی فرآیند پیش‌درمانی افزایش یابد.';
+                
+                document.getElementById('info-box-2').querySelector('h4').innerText = 'جزئیات پیش‌درمانی';
+                document.getElementById('info-box-2').querySelector('p').innerText = 'فرآیند پیش‌درمانی می‌تواند شامل روش‌های مختلفی از جمله انفجار بخار و درمان‌های شیمیایی باشد تا دسترسی به سلولز را بهبود بخشد.';
+                
+                document.getElementById('info-box-3').querySelector('h4').innerText = 'جزئیات هیدرولیز آنزیمی';
+                document.getElementById('info-box-3').querySelector('p').innerText = 'هیدرولیز آنزیمی معمولاً چند ساعت تا چند روز طول می‌کشد، بسته به شرایط و غلظت آنزیم‌ها.';
+                
+                document.getElementById('info-box-4').querySelector('h4').innerText = 'جزئیات تخمیر';
+                document.getElementById('info-box-4').querySelector('p').innerText = 'تخمیر نیاز به حفظ شرایط بهینه برای فعالیت مخمر دارد، از جمله دما و سطح pH.';
+                
+                document.getElementById('info-box-5').querySelector('h4').innerText = 'جزئیات تقطیر و تصفیه';
+                document.getElementById('info-box-5').querySelector('p').innerText = 'فرآیند تقطیر ممکن است به چندین مرحله نیاز داشته باشد تا به خلوص مورد نظر اتانول، معمولاً حدود 95٪، دست یابیم.';
+                
+                document.getElementById('info-box-6').querySelector('h4').innerText = 'جزئیات مدیریت زباله';
+                document.getElementById('info-box-6').querySelector('p').innerText = 'استراتژی‌های موثر مدیریت زباله می‌تواند شامل تبدیل زباله به بیوانرژی یا کمپوست باشد.';
+                
+                document.getElementById('info-box-7').querySelector('h4').innerText = 'جزئیات کنترل کیفیت و آزمایش';
+                document.getElementById('info-box-7').querySelector('p').innerText = 'کنترل کیفیت شامل آزمایش برای ناخالصی‌ها و اطمینان از اینکه بیو اتانول با استانداردهای قانونی مطابقت دارد، می‌باشد.';                
+            } else {
+                // Reset to English
+                document.getElementById('title').innerText = 'Biofuel';
+                document.getElementById('subtitle').innerText = 'How to make this FUEL';
+                
+                document.getElementById('text1').innerText = 'Materials Needed: Rice straw residues, water, chemicals for pretreatment (e.g., sodium hydroxide or sulfuric acid). Equipment Needed: Collection machinery, storage facilities.';
+                document.getElementById('text2').innerText = 'Process: The rice straw is pretreated to break down the lignocellulosic structure and make the cellulose accessible. This can be done using chemical (alkali or acid) treatments. Materials Needed: Sodium hydroxide (NaOH) or sulfuric acid (H2SO4), water. Equipment Needed: Reactors, mixing tanks, heating systems.';
+                document.getElementById('text3').innerText = 'Process: The pretreated rice straw is subjected to enzymatic hydrolysis to convert cellulose into fermentable sugars (glucose and xylose). Materials Needed: Cellulase and xylanase enzymes. Equipment Needed: Hydrolysis reactors, temperature control systems.';
+                document.getElementById('text4').innerText = 'Process: The fermentable sugars are converted into ethanol by fermentation using yeast (e.g., Saccharomyces cerevisiae). Materials Needed: Yeast, nutrients for yeast growth. Equipment Needed: Fermentation tanks, aeration systems, temperature control systems.';
+                document.getElementById('text5').innerText = 'Process: The ethanol is separated from the fermentation broth through distillation and further purified to achieve the desired concentration. Materials Needed: Distillation columns, condensers, purification systems. Equipment Needed: Distillation units, cooling systems.';
+                document.getElementById('text6').innerText = 'Process: The remaining biomass and waste products are managed and disposed of or utilized for other purposes (e.g., animal feed, compost). Materials Needed: Waste management systems. Equipment Needed: Composting facilities, waste processing units.';
+                document.getElementById('text7').innerText = 'Process: The final bioethanol product is tested for quality and purity to ensure it meets the required standards. Materials Needed: Testing kits, quality control instruments. Equipment Needed: Analytical instruments, quality control labs.';
+
+                // Update summaries to English
+                document.getElementById('summary1').innerText = '1. Collection and Preparation';
+                document.getElementById('summary2').innerText = '2. Pretreatment';
+                document.getElementById('summary3').innerText = '3. Enzymatic Hydrolysis';
+                document.getElementById('summary4').innerText = '4. Fermentation';
+                document.getElementById('summary5').innerText = '5. Distillation and Purification';
+                document.getElementById('summary6').innerText = '6. Waste Management';
+                document.getElementById('summary7').innerText = '7. Quality Control and Testing';
+
+                // Change font for English text
+                document.querySelectorAll('p, summary').forEach(el => el.style.fontFamily = 'Courier New, monospace');
+
+                // Change text direction to left-to-right
+                document.body.style.direction = 'ltr';
+                document.body.style.textAlign = 'left';
+                document.querySelectorAll('summary').forEach(el => el.style.textAlign = 'left');
+                document.querySelectorAll('p').forEach(el => el.style.textAlign = 'left');
+
+                // Reset text alignment for h4 to left in info boxes
+                document.querySelectorAll('.info-box h4').forEach(el => {
+                    el.style.textAlign = 'left'; // Reset alignment to left
+                });
+
+                // Update Toggle Details buttons back to English
+                document.querySelectorAll('.toggle-button').forEach(el => {
+                    el.innerText = 'Toggle Details'; // Reset button text to English
+                });
+
+                // Update info boxes back to English
+                document.getElementById('info-box-1').querySelector('h4').innerText = '1. Collection and Preparation Details';
+                document.getElementById('info-box-1').querySelector('p').innerText = 'In this stage, rice straw is collected from fields. It needs to be dried and ground to enhance the efficiency of the pretreatment process.';
+                
+                document.getElementById('info-box-2').querySelector('h4').innerText = '2. Pretreatment Details';
+                document.getElementById('info-box-2').querySelector('p').innerText = 'The pretreatment process can involve various methods, including steam explosion and chemical treatments, to improve accessibility to cellulose.';
+                
+                document.getElementById('info-box-3').querySelector('h4').innerText = '3. Enzymatic Hydrolysis Details';
+                document.getElementById('info-box-3').querySelector('p').innerText = 'Enzymatic hydrolysis typically takes several hours to days, depending on the conditions and enzyme concentration.';
+                
+                document.getElementById('info-box-4').querySelector('h4').innerText = '4. Fermentation Details';
+                document.getElementById('info-box-4').querySelector('p').innerText = 'Fermentation requires maintaining optimal conditions for yeast activity, including temperature and pH levels.';
+                
+                document.getElementById('info-box-5').querySelector('h4').innerText = '5. Distillation and Purification Details';
+                document.getElementById('info-box-5').querySelector('p').innerText = 'The distillation process may require multiple stages to achieve the desired purity of ethanol, typically around 95%.';
+                
+                document.getElementById('info-box-6').querySelector('h4').innerText = '6. Waste Management Details';
+                document.getElementById('info-box-6').querySelector('p').innerText = 'Effective waste management strategies can include converting waste into bioenergy or compost.';
+                
+                document.getElementById('info-box-7').querySelector('h4').innerText = '7. Quality Control and Testing Details';
+                document.getElementById('info-box-7').querySelector('p').innerText = 'Quality control involves testing for impurities and ensuring that the bioethanol meets regulatory standards.';
+            }
+        }
+
+        function toggleInfoBox(boxNumber) {
+            const infoBox = document.getElementById(`info-box-${boxNumber}`);
+            const isVisible = infoBox.style.display === 'block';
+            // Hide all info boxes first
+            document.querySelectorAll('.info-box').forEach(box => box.style.display = 'none');
+            // Show the selected info box
+            infoBox.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function goToHomePage() {
+            window.location.href = "main.html"; // Navigate to main.html
+        }
+    </script>
+</body>
+</html>
